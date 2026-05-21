@@ -16,7 +16,8 @@ class VacancyController extends Controller
      */
     public function index()
     {
-        $vacancies = Vacancy::where('company_id', Auth::guard('company')->id())->get();
+        $vacancies = Vacancy::where('company_id', Auth::guard('company')->id())
+            ->paginate(10);
         return view('company.vacancy.index', compact('vacancies'));
     }
 

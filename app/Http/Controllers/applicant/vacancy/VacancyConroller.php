@@ -12,7 +12,10 @@ class VacancyConroller extends Controller
 {
     public function index()
     {
-        $vacancies = Vacancy::with('company')->where('status', 'open')->latest('id')->get();
+        $vacancies = Vacancy::with('company')
+            ->where('status', 'open')
+            ->latest('id')
+            ->paginate(9);
         return view('applicant.vacancy.index', compact('vacancies'));
     }
 

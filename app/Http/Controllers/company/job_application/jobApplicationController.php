@@ -16,7 +16,8 @@ class jobApplicationController extends Controller
         ->whereHas('company', function ($query) {
             $query->where('company_id', Auth::guard('company')->id());
         })
-        ->get();
+        ->latest('id')
+        ->paginate(3);
         return view('company.job-applications.index', compact('applications'));
     }
 

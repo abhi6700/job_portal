@@ -27,4 +27,8 @@ class JobApplication extends Model
     {
         return $this->hasOneThrough(Company::class, Vacancy::class, 'id', 'id', 'vacancy_id', 'company_id');
     }
+
+    protected $casts = [
+        'application_date' => 'date',
+    ];
 }

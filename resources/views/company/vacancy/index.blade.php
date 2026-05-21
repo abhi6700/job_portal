@@ -36,4 +36,23 @@
         @endforeach
     </tbody>
 </table>
+<div class="row mt-4">
+    <div class="col">
+        <nav aria-label="..."> 
+            <ul class="pagination justify-content-center">
+                <li class="page-item {{ $vacancies->onFirstPage() ? 'disabled' : '' }}">
+                    <a href="{{ $vacancies->previousPageUrl() }}" class="page-link">Previous</a>
+                </li>
+                @foreach($vacancies->getUrlRange(1, $vacancies->lastPage()) as $page => $url)
+                <li class="page-item {{ $vacancies->currentPage() == $page ? 'active' : '' }}">
+                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                </li>
+                @endforeach
+                <li class="page-item {{ $vacancies->hasMorePages() ? '' : 'disabled' }}">
+                    <a class="page-link" href="{{ $vacancies->nextPageUrl() }}">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
 @endsection

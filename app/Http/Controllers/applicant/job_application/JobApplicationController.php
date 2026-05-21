@@ -12,7 +12,9 @@ class JobApplicationController extends Controller
     ## list of my applications
     public function index()
     {
-        $applications = JobApplication::where('user_id', Auth::id())->with('vacancy')->get();
+        $applications = JobApplication::where('user_id', Auth::id())
+            ->with('vacancy')
+            ->paginate(10);
         return view('applicant.job_application.index', compact('applications'));
     }
 
